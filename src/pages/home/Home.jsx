@@ -1,16 +1,20 @@
 // import React from 'react';
 
-import Form from "../../globals/components/forms/form";
+import Hero from "./components/Hero"
+import Product from "./components/Product"
+
+// import Form from "../../globals/components/forms/form";
 
 // import Navbar from "../../globals/components/navbar/Navbar";
 
-const Home = () => {
+
+export default function Home() {
   return (
     <>
-    <div className="home">Home place where i can go</div>
-    <Form />
+  
+    <Hero />
+<    Product />
+    
     </>
-  );
-};
-
-export default Home;
+  )
+}
