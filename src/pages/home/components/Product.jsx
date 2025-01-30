@@ -1,8 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { add } from "../../../store/cartSlice";
 
 export default function Product() {
     const [products, setProducts] = useState([]);
+    //like a bomb carrying drone n vice city
+    //that drops or takes bomb
+    const dispatch = useDispatch()
 
     const fetchProducts = async () => {
         const response = await axios.get("http://localhost:3000/api/products");
@@ -19,6 +24,11 @@ export default function Product() {
         fetchProducts();
     }, []);
 
+    //product as a parameter is referencing each instance of product from above 
+    //it is state defined above
+    const addToCart = (product)=>{
+        dispatch(add(product))
+    }
     return (
         <div className="relative w-full">
 
@@ -37,7 +47,9 @@ export default function Product() {
                                     <div className="flex items-center">
                                         <p className="mr-2 text-lg font-semibold text-gray-900 dark:text-white">Rs. {product.productPrice}</p>
                                         <p className="text-base font-medium text-gray-500 line-through dark:text-gray-300">${product.originalPrice}</p>
-                                        <button className="px-4 py-2 mx-6 font-bold text-white bg-yellow-500 rounded hover:bg-yellow-600">
+                                        <button onClick={()=>{
+                                            addToCart(product)
+                                        }} className="px-4 py-2 mx-6 font-bold text-white bg-yellow-500 rounded hover:bg-yellow-600">
                                             Add to Cart
                                         </button>
                                     </div>
