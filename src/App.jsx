@@ -1,6 +1,6 @@
-import { BrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import router from './routes';
+// import router from './routes';
 import Navbar from './globals/components/navbar/Navbar';
 import Footer from './globals/components/footer/Footer';
 import { Provider } from 'react-redux';
