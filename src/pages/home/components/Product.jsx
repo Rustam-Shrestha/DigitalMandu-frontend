@@ -1,33 +1,39 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../../store/cartSlice";
+import { fetchProducts } from "../../../store/productSlice";
 
 export default function Product() {
-    const [products, setProducts] = useState([]);
+   
     //like a bomb carrying drone n vice city
     //that drops or takes bomb
     const dispatch = useDispatch()
-
-    const fetchProducts = async () => {
-        const response = await axios.get("http://localhost:3000/api/products");
-        if (response.status === 200) {
-            // Setting the state with the current data information
-            // response is our response variable, data inside it represents the data it is holding
-            // another data is holding the data alias in JSON we are sending here from backend mandu
-            setProducts(response.data.data);
-        }
-    };
+    //taking current state(already populated or empty array)
+    //from productSlice and storing in products
+    // destructuring the states from productSlice
+    const {data,status} = useSelector(state => state.product)
+    
+    // assigning products variable with data fetched so we can use map and fetch data in UI
+    //in folowing code products.map is used to fetch data from products 
+    const products = data
 
     //in first reload of page invoke this effect hook
     useEffect(() => {
-        fetchProducts();
+        //using product fetching function from productSlice does
+        dispatch(fetchProducts())
     }, []);
 
     //product as a parameter is referencing each instance of product from above 
     //it is state defined above
     const addToCart = (product)=>{
         dispatch(add(product))
+    }
+    if(status=="loading"){
+        return <div>Loading...</div>
+    }
+    if(status=="error"){
+        return <div>An error occured...</div>
     }
     return (
         <div className="relative w-full">
@@ -37,7 +43,7 @@ export default function Product() {
                     <h1 className="text-2xl font-bold text-yellow-900 md:text-3xl lg:w-10/12">Our Popular Foods</h1>
 
                     <div className="flex flex-wrap justify-between">
-
+                        {/* statte based fetched products used here */}
                         {products.map((product) => (
                             <div key={product._id} className="mx-auto overflow-hidden duration-300 transform bg-white rounded-lg shadow-md mt-11 w-80 dark:bg-slate-800 hover:scale-105 hover:shadow-lg">
                                 <img className="object-cover object-center w-full h-48" src={product.productImage} alt={product.productName} />
