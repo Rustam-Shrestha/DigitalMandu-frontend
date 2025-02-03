@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+// import axios from "axios";
+import API from "../http";
 // freezing the status so it is immutable
 const STATUSES = Object.freeze({
     SUCCESS: "success",
@@ -42,14 +43,14 @@ const productSlice = createSlice({
             //if rejected then error
         
         builder
-            .addCase(fetchProducts.pending, (state, action) => {
+            .addCase(fetchProducts.pending, (state) => {
                 state.status = STATUSES.LOADING
             })
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.data = action.payload
                 state.status = STATUSES.SUCCESS
             })
-            .addCase(fetchProducts.rejected, (state, action) => {
+            .addCase(fetchProducts.rejected, (state) => {
                 state.status = STATUSES.ERROR
             })
 
@@ -68,7 +69,7 @@ export default productSlice.reducer;
 // creating a fetchProducts function with asunc thunk giving alias as products/fetch 
 // and using async await to fetch data from backend
 export const fetchProducts = createAsyncThunk('products/fetch',async()=>{
-    const response = await axios.get("http://localhost:3000/api/products");
+    const response = await API.get("/products");
     const data = response.data.data 
     return data
 })
