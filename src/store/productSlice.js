@@ -15,6 +15,7 @@ const productSlice = createSlice({
     initialState: {
         data: [],
         status: STATUSES.SUCCESS,
+        selectedProduct: {}
     },
     reducers: {
         // followng are like  getters and setters in java settting state from action(dispatch nor other  function)
@@ -31,6 +32,12 @@ const productSlice = createSlice({
             //the status is the empty array above now we are populating the status
             //action.payload is the data we are sending from the action
             state.status = action.payload;
+        },
+        setSelectedProduct(state, action) {
+            // state here refers to the initialState key above that will hold state of the status
+            //the status is the empty array above now we are populating the status
+            //action.payload is the data we are sending from the action
+            state.selectedProduct = action.payload;
         },
     },
     //extra reducer that will work as an asynchronous  thunk
@@ -56,7 +63,7 @@ const productSlice = createSlice({
 
     }
 });
-export const { setProducts, setStatus } = productSlice.actions;
+export const { setProducts, setStatus, setSelectedProduct } = productSlice.actions;
 export default productSlice.reducer;
 
 
@@ -73,6 +80,23 @@ export const fetchProducts = createAsyncThunk('products/fetch',async()=>{
     const data = response.data.data 
     return data
 })
+
+
+export const fetchSingleProduct = (productId) => {
+    return async function fetchSingleProductThunk(dispatch) {
+        dispatch(setStatus(STATUSES.LOADING));
+        try {
+            const response = await API.get(`products/${productId}`, );
+            dispatch(setSelectedProduct(response.data.data));
+            dispatch(setStatus(STATUSES.SUCCESS));
+        } catch (err) {
+            dispatch(setStatus(STATUSES.ERROR));
+            console.log(err);
+        }
+    };
+};
+
+
 
 //multiple products fetching code wih cusotmized function
 // export function fetchProducts() {

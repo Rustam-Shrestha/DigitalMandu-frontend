@@ -50,16 +50,16 @@ export default function Navbar() {
                             </div>
                         </div>
                     </div>
-                    <button onClick={() => navigate('/cart')} className="block transition md:px-4 hover:text-yellow-700">
+                    <button  onClick={() => navigate('/cart')} className="mr-22   rounded-full bg-black  transition md:px-4 text-white cursor-pointer hover:text-yellow-400">
                         <span>Cart <sup>{items.length}</sup></span>
                     </button>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                        <button type="button" className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
+                    <div className="absolute mr-4 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                        {/* <button type="button" className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
                             <span className="sr-only">View notifications</span>
                             <BellIcon aria-hidden="true" className="size-6" />
-                        </button>
+                        </button> */}
                         <Menu as="div" className="relative ml-3">
-                            <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
+                            <MenuButton className="relative flex rounded-full pr-2 pl-2 cursor-pointer bg-black text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
                                 <span className="sr-only">Open user menu</span>
                                 <span className="text-white">Profile</span>
                             </MenuButton>
