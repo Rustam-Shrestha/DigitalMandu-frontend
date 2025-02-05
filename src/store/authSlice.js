@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { STATUSES } from "../globals/miscellanouous/statuses";
-import API from "../http";
+import {API} from "../http";
 // import axios from "axios";
 
 const authSlice = createSlice({
@@ -19,12 +19,17 @@ const authSlice = createSlice({
         },
         setToken(state, action) {
             state.token = action.payload;
-        }
+        },
+        logout(state) {
+            state.token = null;
+            state.status = STATUSES.SUCCESS;
+            state.data = [];
+            },
         
     },
 });
 
-export const { setUser, setStatus,setToken } = authSlice.actions;
+export const { setUser, setStatus,setToken, logout } = authSlice.actions;
 export default authSlice.reducer;
 
 export const registerUser = (data) => {
@@ -32,7 +37,6 @@ export const registerUser = (data) => {
         dispatch(setStatus(STATUSES.LOADING));
         try {
             const response = await API.post("/register", data);
-            dispatch(setUser(response.data.data));
             dispatch(setStatus(STATUSES.SUCCESS));
         } catch (err) {
             dispatch(setStatus(STATUSES.ERROR));
@@ -50,8 +54,11 @@ export const loginUser = (data) => {
             //giging data to the endpoint and getting token in response for login access
             const response = await API.post("/login", data);
             //bringing out token from the data given from response
+            dispatch(setUser(response.data.data));
             dispatch(setToken(response.data.token));
             dispatch(setStatus(STATUSES.SUCCESS));
+            localStorage.setItem("token", response.data.token);
+            
         } catch (err) {
             dispatch(setStatus(STATUSES.ERROR));
             console.log(err);

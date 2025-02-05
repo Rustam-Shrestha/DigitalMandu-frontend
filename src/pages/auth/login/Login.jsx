@@ -10,7 +10,7 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     //retriving token data from auth slice
-    const{token, status, data} = useSelector((state) => state.auth);
+    const { token, status, data } = useSelector((state) => state.auth);
 
     //.repo for storing email and password for login
     const [userData, setUserData] = useState({
@@ -32,13 +32,9 @@ const Login = () => {
         //dispatching loginUser action by giving it userData for logging in
         dispatch(loginUser(userData));
         
-        console.log(token)
-        if(status===STATUSES.SUCCESS){
-            // setting keyvalue pair named token with the token retrived
-            localStorage.setItem("token",token);
-            return navigate("/");
-        }
-        if(status===STATUSES.ERROR){
+            navigate("/");
+        
+        if (status === STATUSES.ERROR) {
             alert("an error occured")
             return;
         }
@@ -47,7 +43,7 @@ const Login = () => {
     return (
         <div className="flex items-center justify-center h-screen overflow-hidden bg-yellow-50">
             <div className="mt-20 bg-white w-17/12 lg:w-5/12 md:6/12 shadow-3xl ">
-                <h1>Hello {data.name}</h1>
+
                 <div className="absolute p-4 transform -translate-x-1/2 -translate-y-1/2 bg-orange-900   rounded-full left-1/2 md:p-2">
                     <span className="text-white text-lg font-bold">
                         <img src="src\assets\digitalManduLogo.png" alt="mandu logo" width="80" height="80" />

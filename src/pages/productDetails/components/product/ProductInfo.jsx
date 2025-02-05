@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "../../../../store/productSlice";
 import { useNavigate } from "react-router-dom";
-import { add } from "../../../../store/cartSlice";
+import {  atc } from "../../../../store/cartSlice";
 
 export default function ProductInfo({ id: productId }) {
     // console.log("first")
@@ -28,7 +28,8 @@ export default function ProductInfo({ id: productId }) {
         if (user.length == 0 && (localStorage.getItem('token') == "" || localStorage.getItem("token") == null || localStorage.getItem('token') == undefined)) {
             return navigate("/login")
         }
-        dispatch(add(productId))
+        //give the argument found and aliaed productId as a parameter for atc reducer
+        dispatch(atc(productId))
 
     }
 // renderer for ratings star

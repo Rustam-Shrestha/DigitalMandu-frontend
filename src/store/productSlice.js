@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
-import API from "../http";
+import {API} from "../http";
 // freezing the status so it is immutable
 const STATUSES = Object.freeze({
     SUCCESS: "success",

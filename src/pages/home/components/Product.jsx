@@ -1,7 +1,6 @@
 // import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { add } from "../../../store/cartSlice";
 import { fetchProducts } from "../../../store/productSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -26,11 +25,7 @@ export default function Product() {
         dispatch(fetchProducts())
     }, []);
 
-    //product as a parameter is referencing each instance of product from above 
-    //it is state defined above
-    const addToCart = (product)=>{
-        dispatch(add(product))
-    }
+    
     if(status=="loading"){
         return <div>Loading...</div>
     }
@@ -55,11 +50,7 @@ export default function Product() {
                                     <div className="flex items-center">
                                         <p className="mr-2 text-lg font-semibold text-gray-900 dark:text-white">Rs. {product.productPrice}</p>
                                         <p className="text-base font-medium text-gray-500 line-through dark:text-gray-300">${product.originalPrice}</p>
-                                        <button onClick={()=>{
-                                            addToCart(product)
-                                        }} className="px-4 py-2 mx-6 font-bold text-white bg-yellow-500 rounded hover:bg-yellow-600">
-                                            Add to Cart
-                                        </button>
+                                        
                                     </div>
                                 </div>
                             </div>
