@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { deleteCart, updateCartItem } from "../../store/cartSlice";
 import "./Cart.css";
 import { useDispatch, useSelector } from "react-redux";
 
 const Cart = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const { items: productsOnCart } = useSelector((state) => state.cart);
 
@@ -12,6 +14,10 @@ const Cart = () => {
     const handleQtyChange = (productId, quantity) => {
         dispatch(updateCartItem(productId, quantity));
     };
+    const deleteCartProduct = (productId) => {
+        dispatch(deleteCart(productId));
+    };
+    
 
     return (
         <div className="h-screen bg-gray-100 pt-20">
@@ -56,7 +62,7 @@ const Cart = () => {
                                             strokeWidth="1.5"
                                             stroke="currentColor"
                                             className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
-                                            onClick={() => dispatch(deleteCart(product._id))}
+                                            onClick={() => deleteCartProduct(product._id)} // Corrected line
                                         >
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                         </svg>
@@ -79,7 +85,7 @@ const Cart = () => {
                             <p className="text-sm text-gray-700">including VAT</p>
                         </div>
                     </div>
-                    <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-white hover:bg-blue-600">
+                    <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-white hover:bg-blue-600" onClick = {() => navigate('/checkout')}>
                         Check out
                     </button>
                 </div>
