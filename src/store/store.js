@@ -2,6 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cartSlice"
 import productReducer from "./productSlice"
 import authReducer from "./authSlice"
+import checkoutReducer from "./checkoutSlice"
+
 //configuring store room
 const store = configureStore({
     //adding an item on store place which is made on cartslice already
@@ -11,7 +13,8 @@ const store = configureStore({
         //it holds multiple reducers comma separted
         cart: cartReducer,
         product: productReducer,
-        auth: authReducer
+        auth: authReducer,
+        checkout: checkoutReducer,
     }
 })
 export default store;

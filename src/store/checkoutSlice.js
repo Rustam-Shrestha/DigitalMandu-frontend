@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { STATUSES } from "../globals/miscellanouous/statuses";
-import {API, APIForAuthenticated} from "../http";
+import {APIForAuthenticated} from "../http";
 // import axios from "axios";
 
 const checkoutSlice = createSlice({
@@ -11,7 +11,7 @@ const checkoutSlice = createSlice({
     },
     reducers: {
         setOrders(state, action) {
-            state.data.push(action.payload);
+            state.data=action.payload;
         },
         setStatus(state, action) {
             state.status = action.payload;
@@ -27,7 +27,6 @@ export const createOrder = (data) => {
     return async function createOrderThunk(dispatch) {
         dispatch(setStatus(STATUSES.LOADING));
         try {
-            console.log("Data sent to API:", data);
 
             const response = await APIForAuthenticated.post("/orders/", data);
             //response with json nested as data: has been sent 

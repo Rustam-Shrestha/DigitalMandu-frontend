@@ -55,7 +55,7 @@ export const fetchCartItems = () => {
     try {
       const response = await APIForAuthenticated.get(`/cart`);
       dispatch(setItems(response.data.data));  // Make sure response contains updated cart
-      console.log(response.data.data);
+      // console.log(response.data.data);
       dispatch(setStatus(STATUSES.SUCCESS));
     } catch (err) {
       dispatch(setStatus(STATUSES.ERROR));
