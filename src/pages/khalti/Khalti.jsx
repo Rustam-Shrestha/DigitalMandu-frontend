@@ -1,9 +1,9 @@
-import React from 'react'
 
-const khalti = () => {
+
+const Khalti = () => {
   return (
     <div>khalti</div>
   )
 }
 
-export default khalti
+export default Khalti
