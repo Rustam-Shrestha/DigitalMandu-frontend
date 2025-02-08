@@ -37,16 +37,21 @@ const CheckOut = () => {
     };
 
     const proceedForKhaltiPayment = () => {
-        if (status === STATUSES.SUCCESS) {
-            const currentOrder = data[data.length - 1];
-            if (paymentMethod === "COD") {
-                console.log(currentOrder)
-                alert("Order placed successfully");
-            } else if (paymentMethod === "khalti") {
-                handleKhalti(currentOrder._id, currentOrder.totalAmount);
-                console.log(currentOrder)
-            }
+        // const currentOrder = data[data.length -1]
+        if(status === STATUSES.SUCCESS && paymentMethod === "COD" ){
+            return alert("Order placed successfully")
+         }  
+        if(status === STATUSES.SUCCESS && paymentMethod === "khalti" ){
+            const {totalAmount,_id} = data[data.length -1].data
+            console.log("nothing")
+            console.log(data.data)
+            console.log("first")
+            console.log(totalAmount)
+            console.log(_id)
+            console.log("second")
+           return navigate(`/khalti?orderid=${_id}&totalamount=${totalAmount}`)
         }
+    
     };
 
     useEffect(() => {
@@ -59,7 +64,10 @@ const CheckOut = () => {
 
     const handleKhalti = async (orderId, totalAmount) => {
         try {
-            const response = await APIAuthenticated.post("/payment", { orderId, amount: totalAmount });
+            console.log(totalAmount)
+            console.log("mrmao")
+            console.log(orderId)
+            const response = await APIForAuthenticated.post("/payment", { orderId, amount: totalAmount });
             if (response.status === 200) {
                 window.location.href = response.data.paymentUrl;
             }
