@@ -11,13 +11,11 @@ const checkoutSlice = createSlice({
     },
     reducers: {
         setOrders(state, action) {
-            state.data=action.payload;
+            state.data.push(action.payload); 
         },
         setStatus(state, action) {
             state.status = action.payload;
         },
-        
-        
     },
 });
 
@@ -27,16 +25,19 @@ export const createOrder = (data) => {
     return async function createOrderThunk(dispatch) {
         dispatch(setStatus(STATUSES.LOADING));
         try {
-
             const response = await APIForAuthenticated.post("/orders/", data);
-            //response with json nested as data: has been sent 
-            //now ewe are setting orders with the response data
-            //that is returned with res.status200 and data in json
-            dispatch(setOrders(response.data.data));
-            dispatch(setStatus(STATUSES.SUCCESS));
+console.log("API Response:", response.data.data); // Log the entire response
+
+if (response.data && response.data.data) {
+    dispatch(setOrders(response.data)); // Ensure correct key
+    dispatch(setStatus(STATUSES.SUCCESS));
+} else {
+    console.warn("API response does not contain expected data:", response.data);
+    dispatch(setStatus(STATUSES.ERROR));
+}
         } catch (err) {
+            console.error("API Error:", err);
             dispatch(setStatus(STATUSES.ERROR));
-            console.log(err);
         }
     };
 };

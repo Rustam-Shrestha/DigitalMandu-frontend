@@ -12,6 +12,7 @@ import Cart from './pages/cart/Cart';
 import ProductDetails from './pages/productDetails/productDetails';
 import Checkout from './pages/checkout/Checkout';
 import Demo from './pages/checkout/Demo';
+import khalti from './pages/khalti/khalti';
 function App() {
   return (
     <>
@@ -31,6 +32,7 @@ function App() {
             <Route path="/productDetails/:id" element={<ProductDetails />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/demo" element={<Demo />} />
+            <Route path="/khalti" element={<Khalti />} />
             
           </Routes>
           <Footer />
