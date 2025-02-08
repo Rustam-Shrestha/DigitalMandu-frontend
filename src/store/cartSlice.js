@@ -27,11 +27,14 @@ const cartSlice = createSlice({
         // aplice for removingt an array  velement
         state.items.splice(index, 1);
       }
+    },
+    emptyCart(state,action){
+      state.items=[]
     }
   },
 });
 
-export const { setItems, setStatus, updateItem,deleteItem } = cartSlice.actions;
+export const { setItems, setStatus, updateItem,deleteItem,emptyCart  } = cartSlice.actions;
 
 export default cartSlice.reducer;
 

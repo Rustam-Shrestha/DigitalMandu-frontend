@@ -42,14 +42,15 @@ const CheckOut = () => {
             return alert("Order placed successfully")
          }  
         if(status === STATUSES.SUCCESS && paymentMethod === "khalti" ){
-            const {totalAmount,_id} = data[data.length -1].data
+            const {totalAmount,_id:orderId} = data[data.length -1].data
             console.log("nothing")
             console.log(data.data)
             console.log("first")
             console.log(totalAmount)
-            console.log(_id)
+            console.log(orderId)
             console.log("second")
-           return navigate(`/khalti?orderid=${_id}&totalamount=${totalAmount}`)
+            return handleKhalti(orderId,totalAmount);
+        //    return navigate(`/khalti?orderid=${_id}&totalamount=${totalAmount}`)
         }
     
     };
@@ -68,6 +69,7 @@ const CheckOut = () => {
             console.log("mrmao")
             console.log(orderId)
             const response = await APIForAuthenticated.post("/payment", { orderId, amount: totalAmount });
+            console.log(response.data)
             if (response.status === 200) {
                 window.location.href = response.data.paymentUrl;
             }
@@ -122,9 +124,15 @@ const CheckOut = () => {
                             <p className="text-sm font-medium text-gray-900">Total</p>
                             <p className="text-2xl font-semibold text-gray-900">Rs {totalAmount}</p>
                         </div>
-                        <button type="submit" className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+                        {
+                        paymentMethod==="COD"?
+                        (<button type="submit" className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
                             Place Order
+                        </button>):
+                        <button type="submit" className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white" style={{backgroundColor:'rebeccapurple'}}>
+                            Pay Rs.{totalAmount} with Khalti
                         </button>
+                    }
                     </div>
                 </form>
             </div>

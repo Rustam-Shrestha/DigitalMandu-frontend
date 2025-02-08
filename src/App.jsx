@@ -13,6 +13,9 @@ import ProductDetails from './pages/productDetails/productDetails';
 import Checkout from './pages/checkout/Checkout';
 import Demo from './pages/checkout/Demo';
 import Khalti from './pages/khalti/khalti';
+import KhaltiSuccess from './pages/success/KhaltiSuccess';
+import MyOrders from './pages/orders/myOrders';
+import UserProfile from './pages/profile/MyProfile';
 function App() {
   return (
     <>
@@ -33,6 +36,9 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/khalti" element={<Khalti />} />
+            <Route path="/success" element={<KhaltiSuccess />} />
+            <Route path="/myOrders" element={<MyOrders />} />
+            <Route path="/myprofile" element={<UserProfile />} />
             
           </Routes>
           <Footer />

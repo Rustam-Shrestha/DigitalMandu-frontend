@@ -29,11 +29,11 @@ const Login = () => {
     const handleOnSubmit = (e) => {
         //stop page refresh
         e.preventDefault();
+        console.log(userData)
         //dispatching loginUser action by giving it userData for logging in
         dispatch(loginUser(userData));
-        
-            navigate("/");
-        
+            // navigate("/");
+        window.location.href = "/"
         if (status === STATUSES.ERROR) {
             alert("an error occured")
             return;
