@@ -15,7 +15,8 @@ import Demo from './pages/checkout/Demo';
 import Khalti from './pages/khalti/khalti';
 import KhaltiSuccess from './pages/success/KhaltiSuccess';
 import MyOrders from './pages/orders/myOrders';
-import UserProfile from './pages/profile/MyProfile';
+
+import MyProfile from './pages/profile/MyProfile';
 function App() {
   return (
     <>
@@ -38,7 +39,7 @@ function App() {
             <Route path="/khalti" element={<Khalti />} />
             <Route path="/success" element={<KhaltiSuccess />} />
             <Route path="/myOrders" element={<MyOrders />} />
-            <Route path="/myprofile" element={<UserProfile />} />
+            <Route path="/myprofile" element={<MyProfile />} />
             
           </Routes>
           <Footer />

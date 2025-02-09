@@ -5,43 +5,41 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { emptyCart } from '../../store/cartSlice';
 
+
 const KhaltiSuccess = () => {
-  const navigate = useNavigate();
-  const queryParams = new URLSearchParams(window.location.search);
-  const pidx = queryParams.get('pidx');
-  const [loading, setLoading] = useState(true);
-  
-  const verifyPidx = async () => {
+    const queryParams = new URLSearchParams(location.search)
+    const navigate = useNavigate()
+    const pidx = queryParams.get("pidx")  
+     const [loading,setLoading] = useState(true)
     const dispatch = useDispatch()
-    try {
-      const response = await APIForAuthenticated.post("/payment/verifyPidx", { pidx });
-      console.log(response.data);
-      if (response.status === 200) {
-        setLoading(false);
-        dispatch(emptyCart())
-        alert(response.data.message )
-        window.location.href="/"
+    const verifyPidx = async()=>{
+      try {
+        const response = await APIForAuthenticated.post("/payment/verifypidx",{pidx})
+        if(response.status === 200){
+            setLoading(false)
+            alert(response.data.message)
+            // state bata pani cart clear 
+            dispatch(emptyCart())
+            window.location.href = "/"
+        }
+      } catch (error) {
+        console.log(error)
       }
-    } catch (error) {
-      console.error(error);
-      setLoading(false); // Ensure loading state is updated in case of error
     }
-  };
+    useEffect(()=>{
+        verifyPidx()
+    },[])
+    if(loading){
+        return (
+            <Loader status='Verifying' />
+        )
+    }else{
+        return(
+            <Loader status='Verified' />
+            
+        )
+    }
 
-  useEffect(() => {
-    verifyPidx();
-  }, []);
+}
 
-  if (loading) {
-    return <Loader status='verifying' />;
-  }
-
-  return (
-    <div>
-      <Loader status='verified' />
-      KhaltiSuccess
-    </div>
-  );
-};
-
-export default KhaltiSuccess;
+export default KhaltiSuccess

@@ -19,20 +19,20 @@ const Review = () => {
                                 href={'#'}
                                 className="font-bold group-hover:text-cyan-700 sm:text-2xl line-clamp-2"
                             >
-                                Spider-Man: Across the Spider-Verse
+                                Review is on progress...
                             </a>
                             <span className="pt-2 font-semibold text-slate-400">
 
-                                (2023)
+                                (2024)
                             </span>
                             <div className="h-28">
                                 <span className="py-2 text-base font-light leading-relaxed line-clamp-4">
-                                    Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence. When the heroes clash on how to handle a new threat, Miles must redefine what it means to be a hero.
+                                    Review addition and other stuff API has been created more stuffs yet to come...
                                 </span>
                             </div>
                             <div className="flex justify-between grid-cols-2 group">
                                 <div className="flex flex-col font-black">
-                                    <span className="text-xl text-yellow-500">IMDB SCORE</span>
+                                    <span className="text-xl text-yellow-500">Sample Rating Score</span>
                                     <span className="flex items-center text-3xl gap-x-1 group-hover:text-yellow-600">
                                         8.8
                                         <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

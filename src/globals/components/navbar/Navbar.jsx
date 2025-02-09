@@ -55,12 +55,10 @@ export default function Navbar() {
 
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
-                                        <button onClick={() => navigate('/profile')} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                                            Profile
-                                        </button>
-                                        <button onClick={() => navigate('/wishlist')} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                                        
+                                        {/* <button onClick={() => navigate('/wishlist')} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                                             Wishlist
-                                        </button>
+                                        </button> */}
                                         {!isLoggedIn ? (
                                             <>
                                                 <button onClick={() => navigate('/register')} className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
@@ -96,7 +94,9 @@ export default function Navbar() {
                                 <Menu as="div" className="relative ml-3">
                                     <Menu.Button className="relative flex rounded-full pr-2 pl-2 cursor-pointer bg-black text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
                                         <span className="sr-only">Open user menu</span>
-                                        <span className="text-white">Profile</span>
+                                        <button onClick={() => navigate('/myprofile')} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                                            Profile
+                                        </button>   
                                     </Menu.Button>
                                 </Menu>
                             </div>

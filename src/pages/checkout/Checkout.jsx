@@ -38,9 +38,9 @@ const CheckOut = () => {
 
     const proceedForKhaltiPayment = () => {
         // const currentOrder = data[data.length -1]
-        if(status === STATUSES.SUCCESS && paymentMethod === "COD" ){
-            return alert("Order placed successfully")
-         }  
+        // if(status === STATUSES.SUCCESS && paymentMethod === "COD" ){
+        //     return alert("Order placed successfully")
+        //  }  
         if(status === STATUSES.SUCCESS && paymentMethod === "khalti" ){
             const {totalAmount,_id:orderId} = data[data.length -1].data
             console.log("nothing")
@@ -50,6 +50,7 @@ const CheckOut = () => {
             console.log(orderId)
             console.log("second")
             return handleKhalti(orderId,totalAmount);
+            
         //    return navigate(`/khalti?orderid=${_id}&totalamount=${totalAmount}`)
         }
     
@@ -126,9 +127,16 @@ const CheckOut = () => {
                         </div>
                         {
                         paymentMethod==="COD"?
-                        (<button type="submit" className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+                        (<button 
+                            onClick={() => {
+                              alert("COD order has been placed");
+                              window.location.href = "/";
+                            }} 
+                            type="button" 
+                            className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
+                          >
                             Place Order
-                        </button>):
+                          </button>):
                         <button type="submit" className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white" style={{backgroundColor:'rebeccapurple'}}>
                             Pay Rs.{totalAmount} with Khalti
                         </button>

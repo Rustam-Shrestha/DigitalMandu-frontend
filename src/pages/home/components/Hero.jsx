@@ -25,7 +25,7 @@ const Hero = () => {
                                     </button>
                                 </div>
                             </form>
-                            <p className="mt-8 text-gray-700 lg:w-10/12">Sit amet consectetur adipisicing elit. <a href="#" className="text-yellow-700">connection</a> tenetur nihil quaerat suscipit, sunt dignissimos.</p>
+                            <p className="mt-8 text-gray-700 lg:w-10/12">National International and multicontinental cusisine you cant miss <a href="#" className="text-yellow-700">Digital Mandu</a> gives all of it for you at high quality low price at any location </p>
                         </div>
                         <div className="ml-auto -mb-24 lg:-mb-100 lg:w-6/12">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSflz5_Oq9zOrxBQ--VA4Yr0WYNaZ9sZUKf8Q&s" className="relative" alt="food illustration" loading="lazy" width="200" height="200" />

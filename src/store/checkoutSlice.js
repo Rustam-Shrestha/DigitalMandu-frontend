@@ -11,7 +11,7 @@ const checkoutSlice = createSlice({
     },
     reducers: {
         setOrders(state, action) {
-            state.data.push(action.payload);
+            state.data = action.payload;
         },
         setStatus(state, action) {
             state.status = action.payload;
@@ -50,7 +50,7 @@ export const fetchOrder = () => {
             console.log("API Response:", response.data.data); // Log the entire response
 
             if (response.data && response.data.data) {
-                dispatch(setOrders(response.data)); // Ensure correct key
+                dispatch(setOrders(response.data.data)); // Ensure correct key
                 dispatch(setStatus(STATUSES.SUCCESS));
             } else {
                 console.warn("API response does not contain expected data:", response.data);

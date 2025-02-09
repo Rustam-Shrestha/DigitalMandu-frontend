@@ -26,20 +26,17 @@ const Login = () => {
         });
     }
     //on submit of form handle it
-    const handleOnSubmit = (e) => {
-        //stop page refresh
+    const handleOnSubmit = async (e) => {
         e.preventDefault();
-        console.log(userData)
-        //dispatching loginUser action by giving it userData for logging in
-        dispatch(loginUser(userData));
-            // navigate("/");
-        window.location.href = "/"
-        if (status === STATUSES.ERROR) {
-            alert("an error occured")
-            return;
+        await dispatch(loginUser(userData));
+        const token = localStorage.getItem("token");
+        if (token) {
+            window.location.href = "/";
+        } else {
+            alert("Login failed, please try again.");
         }
-
-    }
+    };
+    
     return (
         <div className="flex items-center justify-center h-screen overflow-hidden bg-yellow-50">
             <div className="mt-20 bg-white w-17/12 lg:w-5/12 md:6/12 shadow-3xl ">

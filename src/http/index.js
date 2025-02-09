@@ -11,8 +11,19 @@ const APIForAuthenticated = axios.create({
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        //asking for token from local storage and sending it to the server
-        "user_auth_token": `${localStorage.getItem("token")}`,
     },
 });
+
+// Dynamically add token before sending a request
+APIForAuthenticated.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        config.headers["user_auth_token"] = token;
+    }
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+});
+
+
 export  {API,APIForAuthenticated};

@@ -83,7 +83,7 @@ const Register = () => {
                       </svg>
                       <input type="password" id="cpassword" onChange = {handleChange}  className="w-full py-2 pl-12 bg-gray-200 md:py-4 focus:outline-none" placeholder="confirm password" />
                   </div> */}
-                  <button className="w-full p-2 font-medium text-white uppercase bg-gradient-to-b from-orange-700 to-orange-900 md:p-4" type="submit">Login</button>
+                  <button className="w-full p-2 font-medium text-white uppercase bg-gradient-to-b from-orange-700 to-orange-900 md:p-4" type="submit">Register</button>
               </form>
           </div>
       </div>

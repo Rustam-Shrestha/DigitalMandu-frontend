@@ -49,7 +49,7 @@ export default function Product() {
                                     <p className="mb-2 text-base text-gray-700 dark:text-gray-300">{product.productDescription}</p>
                                     <div className="flex items-center">
                                         <p className="mr-2 text-lg font-semibold text-gray-900 dark:text-white">Rs. {product.productPrice}</p>
-                                        <p className="text-base font-medium text-gray-500 line-through dark:text-gray-300">${product.originalPrice}</p>
+                                        <p className="text-base font-medium text-gray-500 line-through dark:text-gray-300">{product.originalPrice}</p>
                                         
                                     </div>
                                 </div>

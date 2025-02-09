@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { STATUSES } from "../globals/miscellanouous/statuses";
-import {API} from "../http";
+import {API, APIForAuthenticated} from "../http";
 // import axios from "axios";
 
 const authSlice = createSlice({
@@ -12,6 +12,9 @@ const authSlice = createSlice({
     },
     reducers: {
         setUser(state, action) {
+            state.data = action.payload;
+        },
+        setUsers(state, action) {
             state.data = action.payload;
         },
         setStatus(state, action) {
@@ -29,7 +32,7 @@ const authSlice = createSlice({
     },
 });
 
-export const { setUser, setStatus,setToken, logout } = authSlice.actions;
+export const { setUser,setUsers, setStatus,setToken, logout } = authSlice.actions;
 export default authSlice.reducer;
 
 export const registerUser = (data) => {
@@ -60,6 +63,7 @@ export const loginUser = (data) => {
             if(response.status === 200 && response.data.token){ 
                 localStorage.setItem("token", response.data.token);
             }
+            
             // localStorage.setItem("token", response.data.token);
             
         } catch (err) {
@@ -68,3 +72,16 @@ export const loginUser = (data) => {
         }
     };
 };
+export const fetchUser = (id) => {
+    return async function fetchUserThunk(dispatch) {
+      dispatch(setStatus(STATUSES.LOADING));
+      try {
+        const response = await APIForAuthenticated.get(`/profile/${id}`);
+        dispatch(setUsers(response.data.data));
+        dispatch(setStatus(STATUSES.SUCCESS));
+      } catch (err) {
+        dispatch(setStatus(STATUSES.ERROR));
+        console.log(err);
+      }
+    };
+  };
